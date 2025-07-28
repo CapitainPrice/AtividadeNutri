@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Style2.css">
+    <script src="js/Script2.js" defer></script>
+    <title>Painel de Gestão de Pacientes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Gestão de Pacientes</h1>
+        <p class="client-info">Gerencie suas consultas e acompanhe o progresso dos pacientes.</p>
+        
+        <!-- Formulário para adicionar dependente -->
+        <form id="dependentForm" class="form-section">
+            <div class="section-header">
+                <h2>Cadastrar Novo Paciente</h2>
+            </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nomeDependente" class="required">Nome Completo</label>
+                    <input type="text" id="nomeDependente" placeholder="Nome do paciente" required>
+                </div>
+                <div class="form-group">
+                    <label for="dataNascimento" class="required">Data de Nascimento</label>
+                    <input type="date" id="dataNascimento" required>
+                </div>
+                <div class="form-group">
+                    <label for="parentesco" class="required">Parentesco</label>
+                    <select id="parentesco" required>
+                        <option value="">Selecione...</option>
+                        <option value="Filho(a)">Filho(a)</option>
+                        <option value="Cônjuge">Cônjuge</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="button btn-add">Adicionar Paciente</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Tabela de pacientes -->
+        <div class="form-section">
+            <div class="section-header">
+                <h2>Pacientes Cadastrados</h2>
+            </div>
+            <div id="dependentesListaVazia" class="empty-list-message">Nenhum paciente cadastrado.</div>
+            <table id="dependentsTable" class="data-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Idade</th>
+                        <th>Parentesco</th>
+                        <th>Consultas</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="dependentsTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Formulário de IMC e histórico -->
+        <div class="form-section">
+            <div class="section-header">
+                <h2>Histórico de IMC</h2>
+            </div>
+            <div id="imcListaVazia" class="empty-list-message">Nenhum registro de IMC encontrado.</div>
+            <table id="imcHistoryTable" class="data-table" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Nome</th>
+                        <th>IMC</th>
+                        <th>Classificação</th>
+                    </tr>
+                </thead>
+                <tbody id="imcHistoryTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Botões de ação -->
+        <div class="main-actions">
+            <button id="btnClearStorage" class="button btn-clear-storage">Limpar Todos os Dados</button>
+        </div>
+    </div>
+
+    <!-- Modal para consultas -->
+    <div id="consultaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="consultaModalTitle">Consultas</h3>
+                <span id="closeConsultaModal" class="close-button">&times;</span>
+            </div>
+            <form id="modalConsultaForm">
+                <input type="hidden" id="modalDependentIndex">
+                <div class="form-group">
+                    <label for="modalDataConsulta" class="required">Data da Consulta</label>
+                    <input type="date" id="modalDataConsulta" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalObsConsulta">Observações</label>
+                    <textarea id="modalObsConsulta" rows="3" placeholder="Detalhes da consulta"></textarea>
+                </div>
+                <button type="submit" class="button">Registrar Consulta</button>
+            </form>
+            <h4>Histórico de Consultas</h4>
+            <div id="modalConsultaHistory"></div>
+        </div>
+    </div>
+
+    <!-- Modal para IMC -->
+    <div id="imcModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="imcModalTitle">Calcular IMC</h3>
+                <span id="closeImcModal" class="close-button">&times;</span>
+            </div>
+            <form id="imcModalForm">
+                <input type="hidden" id="imcTargetPessoa">
+                <div class="form-group">
+                    <label for="modalAltura" class="required">Altura (m)</label>
+                    <input type="number" id="modalAltura" step="0.01" min="0.1" max="3" placeholder="Ex: 1.75" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPeso" class="required">Peso (kg)</label>
+                    <input type="number" id="modalPeso" step="0.1" min="1" max="500" placeholder="Ex: 70.5" required>
+                </div>
+                <button type="submit" class="button">Calcular IMC</button>
+            </form>
+            <div id="imcModalResult" style="display: none;"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Gestão Nutricional. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
