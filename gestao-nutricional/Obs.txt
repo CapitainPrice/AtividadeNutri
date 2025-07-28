@@ -1,0 +1,19 @@
+Configure o servidor (XAMPP/WAMP/MAMP) para servir os arquivos na pasta htdocs
+
+Acesse o sistema:
+
+Tela inicial: http://localhost/gestao-nutricional/index.html
+
+Painel: http://localhost/gestao-nutricional/painel.html
+
+Esta estrutura permite:
+
+Comunicação assíncrona entre frontend e backend
+
+CRUD completo de pacientes, consultas e registros de IMC
+
+Separação clara entre apresentação (HTML/CSS) e lógica de negócios (PHP/MySQL)
+
+Manutenção do design original enquanto adiciona funcionalidade de banco de dados
+
+Os arquivos CSS permanecem inalterados, enquanto o JavaScript foi modificado para usar chamadas à API PHP em vez de localStorage.
