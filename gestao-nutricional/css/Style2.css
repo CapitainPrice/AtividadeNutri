@@ -85,3 +85,19 @@ h1 { color: var(--dark-gray-color); text-align: center; margin-bottom: 10px; fon
 .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
 .close-button:hover { color: var(--dark-gray-color); }
 #imcModalResult { margin-top: 15px; padding: 10px; border-radius: 5px; background: #f0f0f0; text-align: center; }
+
+.btn-view-consults {
+    background-color: red; /* Cor azul claro */
+    }
+    
+    .btn-calculate-imc {
+    background-color: blue
+    }
+    
+    .btn-view-consults:hover {
+    background-color: #a80606; /* Tom mais escuro ao passar o mouse */
+    }
+    
+    .btn-calculate-imc:hover {
+    background-color: #0d06d8; /* Tom mais escuro ao passar o mouse */
+    }

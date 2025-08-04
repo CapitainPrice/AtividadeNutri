@@ -1,19 +1,32 @@
-Configure o servidor (XAMPP/WAMP/MAMP) para servir os arquivos na pasta htdocs
-
 Acesse o sistema:
 
-Tela inicial: http://localhost/gestao-nutricional/index.html
+Tela inicial: http://localhost/gestao-nutricional/Tela1.html
 
-Painel: http://localhost/gestao-nutricional/painel.html
+Painel: http://localhost/gestao-nutricional/Tela2.php
 
-Esta estrutura permite:
+MYSQL necessário: 
 
-Comunicação assíncrona entre frontend e backend
+CREATE TABLE dependentes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    parentesco VARCHAR(50) NOT NULL
+);
 
-CRUD completo de pacientes, consultas e registros de IMC
+CREATE TABLE consultas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dependente_id INT NOT NULL,
+    data_consulta DATE NOT NULL,
+    observacoes TEXT,
+    FOREIGN KEY (dependente_id) REFERENCES dependentes(id)
+);
 
-Separação clara entre apresentação (HTML/CSS) e lógica de negócios (PHP/MySQL)
-
-Manutenção do design original enquanto adiciona funcionalidade de banco de dados
-
-Os arquivos CSS permanecem inalterados, enquanto o JavaScript foi modificado para usar chamadas à API PHP em vez de localStorage.
+CREATE TABLE historico_imc (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dependente_id INT NOT NULL,
+    valor_imc DECIMAL(5,2) NOT NULL,
+    classificacao VARCHAR(50) NOT NULL,
+    data_calculo TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dependente_id) REFERENCES dependentes(id)
+);
